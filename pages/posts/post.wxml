@@ -11,7 +11,7 @@
             <image src='/images/banner3.png'></image>
         </swiper-item>
     </swiper>
-    <block wx:for="{{posts_key}}" wx:for-item="i">
+    <block wx:for="{{posts_key}}" wx:for-item="i" wx:key="">
 	<view catchtap="onPostTap" data-postid="{{i.postid}}">
 		<template is="postItem"  data="{{...i}}" />
 	</view>
