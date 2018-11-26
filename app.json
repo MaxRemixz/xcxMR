@@ -1,29 +1,29 @@
 {
-	"pages": [
-		"pages/welcome/welcome",
-		"pages/posts/post",
-		"pages/posts/post-detail/post-detail",
-        "pages/movies/movies"
-	],
-	"window": {
-		"navigationBarBackgroundColor": "#405f80"
-	},
-    "tabBar": {
-        "selectedColor": "#405f80",
-        "borderStyle": "white",
-        "list": [
-            {
-                "pagePath": "pages/posts/post",
-                "text": "阅读",
-                "iconPath": "/images/yuedu.png",
-                "selectedIconPath": "/images/yueduxz.png"
-            },
-            {
-                "pagePath": "pages/movies/movies",
-                "text": "电影",
-                "iconPath": "/images/diany.png",
-                "selectedIconPath":"/images/dyxz.png"
-            }
-        ]
-    }
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/posts/post",
+    "pages/posts/post-detail/post-detail",
+    "pages/movies/movies"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#405f80"
+  },
+  "tabBar": {
+    "selectedColor": "#405f80",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/posts/post",
+        "text": "阅读",
+        "iconPath": "/images/yuedu.png",
+        "selectedIconPath": "/images/yueduxz.png"
+      },
+      {
+        "pagePath": "pages/movies/movies",
+        "text": "电影",
+        "iconPath": "/images/diany.png",
+        "selectedIconPath": "/images/dyxz.png"
+      }
+    ]
+  }
 }
