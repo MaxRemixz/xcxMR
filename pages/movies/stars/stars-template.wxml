@@ -7,6 +7,6 @@
             <image src="/images/star.png"></image>
             <image src="/images/nostar.png"></image>
         </view>
-        <text class='star-score'>9.9</text>
+        <text class='star-score'>{{average}}</text>
     </view>
 </template>
