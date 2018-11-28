@@ -20,12 +20,19 @@ Page({
         var comingSoonUrl = app.globalData.doubanBase + "/v2/movie/coming_soon" + "?start=0&count=3";
         var top250Url = app.globalData.doubanBase + "/v2/movie/top250" + "?start=0&count=3";
 
-        this.getMovieListData(inTheatersUrl, "inTheaters");
-        this.getMovieListData(comingSoonUrl, "comingSoon");
-        this.getMovieListData(top250Url, "top250");
+        this.getMovieListData(inTheatersUrl, "inTheaters", "正在热映");
+        this.getMovieListData(comingSoonUrl, "comingSoon", "即将上映的电影");
+        this.getMovieListData(top250Url, "top250", "豆瓣电影Top250");
     },
 
-    getMovieListData: function (url, settedKey) {
+    onMoreTap:function(event){
+        var category = event.currentTarget.dataset.category;
+        wx.navigateTo({
+            url: 'more-movie/more-movie?category=' + category,
+        })
+    },
+
+    getMovieListData: function (url, settedKey, categoryTitle) {
         var that = this
         wx.request({
             url: url,
@@ -33,7 +40,7 @@ Page({
                 'content-type': 'json'
             },
             success: function (res) {
-                that.processDoubanData(res.data, settedKey)
+                that.processDoubanData(res.data, settedKey, categoryTitle)
             },
             fail: function (error) {
                 console.log(error)
@@ -41,7 +48,7 @@ Page({
         })
     },
 
-    processDoubanData: function (moviesDouban, settedKey){
+    processDoubanData: function (moviesDouban, settedKey, categoryTitle){
         var movies = [];
         for (var idx in moviesDouban.subjects){
             var subject = moviesDouban.subjects[idx]
@@ -54,13 +61,15 @@ Page({
                 title: title,
                 average: subject.rating.average,
                 coverageUrl: subject.images.large,
-                movieId: subject.id
+                movieId: subject.id,
+                lefttitle: moviesDouban.title,
             }
             movies.push(temp)
         }
         var readyData = {};
         readyData[settedKey] = {
-            movies: movies
+            movies: movies,
+            categoryTitle: categoryTitle
         }
         this.setData(readyData);
     },
