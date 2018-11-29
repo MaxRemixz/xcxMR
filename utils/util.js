@@ -1,16 +1,34 @@
-function convertToStarsArray(stars){
-    var num = stars.toString().substring(0,1);
+function convertToStarsArray(stars) {
+    var num = stars.toString().substring(0, 1);
     var array = [];
-    for(var i = 1; i <= 5; i++){
-        if(i <= num){
+    for (var i = 1; i <= 5; i++) {
+        if (i <= num) {
             array.push(1);
-        }else{
+        } else {
             array.push(0);
         }
     }
     return array;
 }
 
+
+function http(url, callBack) {
+    wx.request({
+        url: url,
+        header: {
+            'content-type': 'json'
+        },
+        success: function(res) {
+            callBack(res.data);
+        },
+        fail: function(error) {
+            console.log(error)
+        }
+    })
+}
+
+
 module.exports = {
-    convertToStarsArray: convertToStarsArray
+    convertToStarsArray: convertToStarsArray,
+    http: http
 }

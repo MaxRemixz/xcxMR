@@ -61,8 +61,7 @@ Page({
                 title: title,
                 average: subject.rating.average,
                 coverageUrl: subject.images.large,
-                movieId: subject.id,
-                lefttitle: moviesDouban.title,
+                movieId: subject.id
             }
             movies.push(temp)
         }
