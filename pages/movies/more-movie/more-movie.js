@@ -23,10 +23,10 @@ Page({
             case "正在热映":
                 dataUrl = app.globalData.doubanBase + "/v2/movie/in_theaters";
                 break;
-            case "即将上映":
+            case "即将上映的电影":
                 dataUrl = app.globalData.doubanBase + "/v2/movie/coming_soon";
                 break;
-            case "豆瓣Top250":
+            case "豆瓣电影Top250":
                 dataUrl = app.globalData.doubanBase + "/v2/movie/top250";
                 break;
         }
