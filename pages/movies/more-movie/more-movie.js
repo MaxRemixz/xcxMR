@@ -10,6 +10,9 @@ Page({
     data: {
         movies: {},
         navigateTitle: "",
+        requestUrl: "",
+        totalCount: 0,
+        isEmpty: true,   //是不是第一次加载。默认是true。就是第一次加载
     },
 
     /**
@@ -30,8 +33,14 @@ Page({
                 dataUrl = app.globalData.doubanBase + "/v2/movie/top250";
                 break;
         }
-
+        this.data.requestUrl = dataUrl;
         util.http(dataUrl, this.processDoubanData)
+    },
+
+    onScrollLower: function(event){
+        var nextUrl = this.data.requestUrl + "?start=" + 
+        this.data.totalCount + "&count=20";
+        util.http(nextUrl, this.processDoubanData);
     },
 
     processDoubanData: function (moviesDouban) {
@@ -51,9 +60,20 @@ Page({
             }
             movies.push(temp)
         }
+        // 判断是不是第一次加载数据。isEmpty如果是true证明是第一次加载数据
+        // 那么就需要走else 也就是不需要连接之前的数据
+        var totalMovies = {};
+        if(this.data.isEmpty){
+            totalMovies = movies;
+            this.data.isEmpty = false;
+        }
+        else{
+            totalMovies = this.data.movies.concat(movies);
+        }
         this.setData({
-            movies: movies
+            movies: totalMovies
         });
+        this.data.totalCount += 20;
     },
 
     /**
