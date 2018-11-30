@@ -41,6 +41,7 @@ Page({
         var nextUrl = this.data.requestUrl + "?start=" + 
         this.data.totalCount + "&count=20";
         util.http(nextUrl, this.processDoubanData);
+        wx.showNavigationBarLoading();
     },
 
     processDoubanData: function (moviesDouban) {
@@ -73,6 +74,7 @@ Page({
         this.setData({
             movies: totalMovies
         });
+        wx.hideNavigationBarLoading();
         this.data.totalCount += 20;
     },
 
