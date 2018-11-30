@@ -12,7 +12,7 @@ Page({
         navigateTitle: "",
         requestUrl: "",
         totalCount: 0,
-        isEmpty: true,   //是不是第一次加载。默认是true。就是第一次加载
+        isEmpty: true, //是不是第一次加载。默认是true。就是第一次加载
     },
 
     /**
@@ -37,14 +37,23 @@ Page({
         util.http(dataUrl, this.processDoubanData)
     },
 
-    onScrollLower: function(event){
-        var nextUrl = this.data.requestUrl + "?start=" + 
-        this.data.totalCount + "&count=20";
+    onScrollLower: function(event) {
+        var nextUrl = this.data.requestUrl + "?start=" +
+            this.data.totalCount + "&count=20";
         util.http(nextUrl, this.processDoubanData);
         wx.showNavigationBarLoading();
     },
+    //下拉刷新的默认函数是系统定义的onPullDownRefresh
+    // onPullDownRefresh: function() {
+    //     var refreshUrl = this.data.requestUrl + "?start=0&count=20";
+    //     // 需要将原来的数据清空。否则会重新添加。而且把状态改为第一次进入的刷新状态
+    //     this.data.movies = {};
+    //     this.data.isEmpty = true;
+    //     util.http(refreshUrl, this.processDoubanData);
+    //     wx.showNavigationBarLoading();
+    // },
 
-    processDoubanData: function (moviesDouban) {
+    processDoubanData: function(moviesDouban) {
         var movies = [];
         for (var idx in moviesDouban.subjects) {
             var subject = moviesDouban.subjects[idx]
@@ -64,18 +73,18 @@ Page({
         // 判断是不是第一次加载数据。isEmpty如果是true证明是第一次加载数据
         // 那么就需要走else 也就是不需要连接之前的数据
         var totalMovies = {};
-        if(this.data.isEmpty){
+        if (this.data.isEmpty) {
             totalMovies = movies;
             this.data.isEmpty = false;
-        }
-        else{
+        } else {
             totalMovies = this.data.movies.concat(movies);
         }
         this.setData({
             movies: totalMovies
         });
-        wx.hideNavigationBarLoading();
         this.data.totalCount += 20;
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
     },
 
     /**
