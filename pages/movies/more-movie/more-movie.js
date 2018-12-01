@@ -84,7 +84,7 @@ Page({
         });
         this.data.totalCount += 20;
         wx.hideNavigationBarLoading();
-        wx.stopPullDownRefresh();
+        // wx.stopPullDownRefresh();
     },
 
     /**
