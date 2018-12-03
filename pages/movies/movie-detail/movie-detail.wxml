@@ -2,7 +2,7 @@
 
 <view class='container'>
     <image class='head-img' src='{{movie.movieImg}}' mode='aspectFill' />
-    <view class='haed-img-hover'>
+    <view class='head-img-hover'>
         <text class='main-title'>{{movie.title}}</text>
         <text class='sub-title'>{{movie.country + " . " + movie.year}}</text>
         <view class='like'>
@@ -45,7 +45,7 @@
     <view class='hr'></view>
 
     <view class='cast'>
-        <text style='color: #999; margin-bottom:40rpx;'>影人</text>
+        <text class='cast-font'>影人</text>
         <scroll-view class='cast-imgs' scroll-x="true" style='width:100%'>
             <block wx:for="{{movie.castsInfo}}" wx:for-item="item">
                 <view class='cast-container'>
