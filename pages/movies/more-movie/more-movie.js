@@ -43,15 +43,6 @@ Page({
         util.http(nextUrl, this.processDoubanData);
         wx.showNavigationBarLoading();
     },
-    //下拉刷新的默认函数是系统定义的onPullDownRefresh
-    // onPullDownRefresh: function() {
-    //     var refreshUrl = this.data.requestUrl + "?start=0&count=20";
-    //     // 需要将原来的数据清空。否则会重新添加。而且把状态改为第一次进入的刷新状态
-    //     this.data.movies = {};
-    //     this.data.isEmpty = true;
-    //     util.http(refreshUrl, this.processDoubanData);
-    //     wx.showNavigationBarLoading();
-    // },
 
     processDoubanData: function(moviesDouban) {
         var movies = [];
@@ -121,7 +112,15 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
+        // 下拉刷新的默认函数是系统定义的onPullDownRefresh
 
+        // var refreshUrl = this.data.requestUrl + "?start=0&count=20";
+        // // 需要将原来的数据清空。否则会重新添加。而且把状态改为第一次进入的刷新状态
+        // this.data.movies = {};
+        // this.data.isEmpty = true;
+        // this.data.totalCount=0;
+        // util.http(refreshUrl, this.processDoubanData);
+        // wx.showNavigationBarLoading();
     },
 
     /**

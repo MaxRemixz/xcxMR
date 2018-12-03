@@ -5,4 +5,4 @@
     <text class="movie-title">{{title}}</text>
     <template is="starsTemplate" data="{{score: average, stars: stars}}"/>
   </view>
-</template> 
+</template>
