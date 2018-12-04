@@ -37,6 +37,13 @@ Page({
         util.http(dataUrl, this.processDoubanData)
     },
 
+    onMovieTap: function(event) {
+        var movieId = event.currentTarget.dataset.movieid;
+        wx.navigateTo({
+            url: 'movie-detail/movie-detail?id=' + movieId,
+        })
+    },
+
     onScrollLower: function(event) {
         var nextUrl = this.data.requestUrl + "?start=" +
             this.data.totalCount + "&count=20";

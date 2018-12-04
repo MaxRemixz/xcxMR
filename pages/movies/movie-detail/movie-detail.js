@@ -19,6 +19,13 @@ Page({
 
         util.http(url, this.processDoubanData);
     },
+    // 查看图片
+    viewMoviePostImg:function(event){
+        var src = event.currentTarget.dataset.src;
+        wx.previewImage({
+            urls: [src],
+        })
+    },
 
     processDoubanData:function(data){
         // 如果data为空值
