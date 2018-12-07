@@ -19,10 +19,15 @@ Page({
     onLoad: function(options) {
         var movieId = options.id;
         var url = app.globalData.doubanBase + '/v2/movie/subject/' + movieId;
-        var that = this;
         var movie = new Movie(url);
-        movie.getMovieData(function(movie) {
-            that.setData({
+        // var that = this;
+        // movie.getMovieData(function(movie) {
+        //     that.setData({
+        //         movie: movie
+        //     })
+        // })
+        movie.getMovieData((movie) => {
+            this.setData({
                 movie: movie
             })
         })
